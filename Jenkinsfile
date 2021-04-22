@@ -2,15 +2,14 @@ pipeline {
    agent{
       label 'ANSIBLE'
      }
-  }
-  stages{
+  stages {
     stage('Hello'){
       steps{
         sh 'hostname'
      }
    }
-   stage('Hello1'){
-     steps{
+   stage('Hello1') {
+     steps {
        echo 'hello world 1'
       }
     }
