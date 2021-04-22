@@ -1,6 +1,5 @@
 pipeline {
-  agent {
-    agent{
+   agent{
       label 'ANSIBLE'
      }
   }
