@@ -37,7 +37,7 @@ pipeline {
    stage('PROD') {
    when {
       expression{
-      params.PROD == true
+      params.PROD.toBoolean()
       }
    }
      input {
