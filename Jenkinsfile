@@ -9,6 +9,9 @@ pipeline {
      triggers{
      pollSCM('* * * * *')}
 
+     tools {
+       nodejs 'node-15'
+       }
 
      options{
      disableConcurrentBuilds()
