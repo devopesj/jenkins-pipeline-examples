@@ -35,6 +35,11 @@ pipeline {
      }
    }
    stage('Hello1') {
+     input {
+        message "Should we continue?"
+        ok "Yes, we should."
+        submitter "admin"
+    }
      steps {
        echo 'hello world 1'
       }
