@@ -21,6 +21,9 @@ pipeline {
   }
   post{
     aborted{
+    environment{
+    SURL = "post.example.com"
+    }
       slackSend channel: '#random', message: "Failed Job - URL = ${SURL}"
     }
     always{
