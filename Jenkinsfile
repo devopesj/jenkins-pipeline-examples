@@ -18,10 +18,10 @@ pipeline {
     }
   }
   post{
-    failed{
+    aborted{
       slackSend channel: '#random', message: 'Failed Job - URL = ${URL}'
     }
-    aborted{
+    always{
       slackSend channel: '#random', message: 'Aborted Job - URL = ${URL}'
     }
   }
