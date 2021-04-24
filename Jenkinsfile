@@ -3,6 +3,7 @@ pipeline {
 
       environment {
         SURL = "global.example.com"
+        SLACK_TOKEN = credentials('SLACK')
      }
 
   stages {
@@ -12,6 +13,7 @@ pipeline {
       }
       steps{
         sh 'echo ${SURL}'
+        sh 'echo ${SLACK_TOKEN}'
      }
    }
    stage('Hello1') {
@@ -21,9 +23,6 @@ pipeline {
     }
   }
   post{
-     environment{
-      SURL = "post.example.com"
-      }
     aborted{
       slackSend channel: '#random', message: "Failed Job - URL = ${SURL}"
     }
