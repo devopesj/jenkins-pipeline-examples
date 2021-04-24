@@ -1,6 +1,5 @@
 pipeline {
-   agent{
-      label 'ANSIBLE'
+   agent any
 
       environment {
         SURL ="global.example.com"
