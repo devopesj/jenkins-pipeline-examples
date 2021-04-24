@@ -9,6 +9,7 @@ pipeline {
      triggers{
      pollSCM('* * * * *')}
 
+
      options{
      disableConcurrentBuilds()
      }
@@ -27,9 +28,7 @@ pipeline {
       SURL = "local.example.com"
       }
       steps{
-        sh 'echo ${SURL}'
-        sh 'echo ${SLACK_TOKEN}'
-        sh 'PERSON NAME = ${PERSON}'
+        sh 'node --version'
      }
    }
    stage('Hello1') {
