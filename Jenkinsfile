@@ -4,6 +4,7 @@ pipeline {
       environment {
         SURL = "global.example.com"
      }
+
   stages {
     stage('Hello'){
       environment{
@@ -20,10 +21,10 @@ pipeline {
     }
   }
   post{
+     environment{
+      SURL = "post.example.com"
+      }
     aborted{
-    environment{
-    SURL = "post.example.com"
-    }
       slackSend channel: '#random', message: "Failed Job - URL = ${SURL}"
     }
     always{
