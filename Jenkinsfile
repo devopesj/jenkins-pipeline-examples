@@ -6,6 +6,7 @@ pipeline {
      }
   stages {
     stage('Hello'){
+      SURL = "local.example.com"
       steps{
         sh 'echo ${SURL}'
      }
