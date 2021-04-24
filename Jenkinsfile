@@ -2,7 +2,7 @@ pipeline {
    agent any
 
       environment {
-        SURL ="global.example.com"
+        SURL = "global.example.com"
      }
   stages {
     stage('Hello'){
