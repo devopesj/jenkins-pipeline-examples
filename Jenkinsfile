@@ -6,6 +6,9 @@ pipeline {
         SLACK_TOKEN = credentials('SLACK')
      }
 
+     triggers{
+     cron('* * * * *')}
+
      options{
      disableConcurrentBuilds()
      }
