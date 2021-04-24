@@ -7,7 +7,7 @@ pipeline {
      }
 
      triggers{
-     cron('* * * * *')}
+     pollSCM('* * * * *')}
 
      options{
      disableConcurrentBuilds()
