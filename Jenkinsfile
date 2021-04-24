@@ -10,7 +10,7 @@ pipeline {
      pollSCM('* * * * *')}
 
      tools {
-       nodejs 'node-15'
+       nodejs 'node-16'
        }
 
      options{
