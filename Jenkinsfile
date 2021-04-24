@@ -3,12 +3,12 @@ pipeline {
       label 'ANSIBLE'
 
       environment {
-        URL = 'global.example.com'}
+        SURL ="global.example.com"
      }
   stages {
     stage('Hello'){
       steps{
-        sh 'echo ${URL}'
+        sh 'echo ${SURL}'
      }
    }
    stage('Hello1') {
@@ -19,10 +19,10 @@ pipeline {
   }
   post{
     aborted{
-      slackSend channel: '#random', message: 'Failed Job - URL = ${URL}'
+      slackSend channel: '#random', message: 'Failed Job - URL = ${SURL}'
     }
     always{
-      slackSend channel: '#random', message: 'Aborted Job - URL = ${URL}'
+      slackSend channel: '#random', message: 'Aborted Job - URL = ${SURL}'
     }
   }
 }
