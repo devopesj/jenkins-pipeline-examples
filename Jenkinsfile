@@ -23,7 +23,7 @@ pipeline {
       steps{
         sh 'echo ${SURL}'
         sh 'echo ${SLACK_TOKEN}'
-        sh 'PERSON NAME' = ${PERSON}
+        sh 'PERSON NAME = ${PERSON}'
      }
    }
    stage('Hello1') {
