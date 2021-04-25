@@ -51,7 +51,6 @@ pipeline {
     }
     stage('Parallel stages') {
     parallel {
-    stages {
       stage('P1'){
         steps {
           sh 'sleep 100'
@@ -65,7 +64,6 @@ pipeline {
           }
        }
     }
-  }
   post{
     aborted{
       slackSend channel: '#random', message: "Failed Job - URL = ${SURL}"
