@@ -48,8 +48,10 @@ type xq &>/dev/null
 if [ $? -ne 0 ]; then
   echo -e "\e[1;31m xq is missing, Ensure you install xq"
   exit 2
+fi
 
-TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/jenkins-agent.jnlp | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
+#Configure Agent with CLI
+TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp | sed -e 's|>| |g' -e 's|<| |g' | xargs -n1 | grep argument -A1 | grep -v argument  | head -1)
 
 curl -f -s -O ${URL}/jnlpJars/agent.jar
 
@@ -60,5 +62,5 @@ sudo cp slave.service etc/systemd/service/jenkins-slave.service
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins-slave
 sudo systemctl start jenkins-slave
-#Configure Agent with CLI
+
 #Setup Jenkins startup script
