@@ -41,7 +41,7 @@ if [ $? -ne 0 ]; then
 fi
 
 #Create Agent with CLI
-sed -e "s/AGENTNAME/${AGENTNAME}" | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
+sed -e "s/AGENTNAME/${AGENTNAME}" node.xml  | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
 
 #Setup xml file with agent name - Done with node.xml file
 TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/jenkins-agent.jnlp | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
