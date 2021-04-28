@@ -44,6 +44,11 @@ fi
 sed -e "s/AGENTNAME/${AGENTNAME}" node.xml  | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
 
 #Setup xml file with agent name - Done with node.xml file
+type xq &>/dev/null
+if [ $? -ne 0 ]; then
+  echo -e "\e[1;31m xq is missing, Ensure you install xq"
+  exit 2
+
 TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/jenkins-agent.jnlp | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
 
 curl -f -s -O ${URL}/jnlpJars/agent.jar
@@ -51,6 +56,7 @@ curl -f -s -O ${URL}/jnlpJars/agent.jar
 java -jar agent.jar -jnlpUrl http://172.31.40.19:8080/computer/agent1a/jenkins-agent.jnlp -secret 90731c613108a6ff64fc1fdf22074395b3be3a714058abc6b43b83c03d0aebfc -workDir "/home/centos"
 
 sudo sed -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service >/etc/systemd/system/jenkins-slave.service
+sudo cp slave.service etc/systemd/service/jenkins-slave.service
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins-slave
 sudo systemctl start jenkins-slave
