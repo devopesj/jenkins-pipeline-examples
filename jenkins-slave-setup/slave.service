@@ -1,0 +1,9 @@
+[Unit]
+Description = Jenkins Slave Service
+[Service]
+User=centos
+ExecStart=/bin/java -jar /home/centos/agent.jar -jnlpUrl URL/computer/AGENTNAME/slave-agent.jnlp -secret TOKEN -workDir "/home/centos"
+SyslogIdentifier=jenkins
+
+[Install]
+WantedBy=multi-user.target
