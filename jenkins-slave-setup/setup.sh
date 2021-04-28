@@ -29,14 +29,14 @@ fi
 #Download cli jar file
 curl -f -s -o /tmp/cli.jar ${URL}/jnlpJars/jenkins-cli.jar
 if [ $? -ne 0 ]; then
-  echo -e "e\[1;31m Unable to download Jenkins CLI"
+  echo -e "\e[1;31m Unable to download Jenkins CLI"
   exit 2
 fi
 
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>dev/null
 if [ $? -ne 0 ]; then
-  echo -e "e\[1;31m Agent already exists, Use another Name\e[0m"
+  echo -e "\e[1;31m Agent already exists, Use another Name\e[0m"
   exit 1
 fi
 
