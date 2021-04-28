@@ -6,8 +6,8 @@
 # 3. Password
 
 USAGE() {
-  echo -e "\e[1;31, Invalid Inputs\e[0m"
-  echo -e "\e1m $0 URL(http://IP:8080) USERNAME PASSWORD AGENTNAME \e[0m"
+  echo -e "\e[1;31 Invalid Inputs\e[0m"
+  echo -e "\e[1m $0 URL(http://IP:8080) USERNAME PASSWORD AGENTNAME \e[0m"
   exit 1
 }
 
