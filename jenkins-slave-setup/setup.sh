@@ -34,13 +34,25 @@ if [ $? -ne 0 ]; then
 fi
 
 #
-java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME}
-echo $?
-exit
+java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>dev/null
+if [ $? -ne 0 ]; then
+  echo -e "e\1:31m Agent already exists, Use another Name\e[0m"
+  exit 1
+fi
 
 #Create Agent with CLI
 sed -e "s/AGENTNAME/${AGENTNAME}" | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
 
-#Setup xml file with agent name
+#Setup xml file with agent name - Done with node.xml file
+TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/jenkins-agent.jnlp | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
+
+curl -f -s -O ${URL}/jnlpJars/agent.jar
+
+java -jar agent.jar -jnlpUrl http://172.31.40.19:8080/computer/agent1a/jenkins-agent.jnlp -secret 90731c613108a6ff64fc1fdf22074395b3be3a714058abc6b43b83c03d0aebfc -workDir "/home/centos"
+
+sudo sed -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service >/etc/systemd/system/jenkins-slave.service
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins-slave
+sudo systemctl start jenkins-slave
 #Configure Agent with CLI
 #Setup Jenkins startup script

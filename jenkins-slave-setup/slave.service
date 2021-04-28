@@ -1,0 +1,9 @@
+[Unit]
+Description
+[Service]
+User=centos
+ExecStart=/bin/java -jar agent.jar -jnlpUrl URL/computer/AGENTNAME/jenkins-agent.jnlp -secret TOKEN -workDir "/home/centos"
+SysylogIdentifier=jenkins
+
+[Install]
+WantedBy=multi-user.target
