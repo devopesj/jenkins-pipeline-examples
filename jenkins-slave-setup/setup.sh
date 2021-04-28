@@ -35,7 +35,7 @@ fi
 
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>dev/null
-if [ $? -ne 0 ]; then
+if [ $? -eq 0 ]; then
   echo -e "\e[1;31m Agent already exists, Use another Name\e[0m"
   exit 1
 fi
