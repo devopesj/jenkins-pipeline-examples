@@ -24,7 +24,7 @@ fi
 #Install java
 type java &>/dev/null
 if [ $? -ne 0 ]; then
-  echo -e "e\1;31m Java is missing, Ensure you install Java"
+  echo -e "\e[1;31m Java is missing, Ensure you install Java"
   exit 2
 fi
 #Download cli jar file
