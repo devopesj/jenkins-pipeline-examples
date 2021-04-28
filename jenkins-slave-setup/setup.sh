@@ -33,6 +33,8 @@ if [ $? -ne 0 ]; then
   exit 2
 fi
 
+curl -f -s -O /home/centos/agent.jar ${URL}/jnlpJars/agent.jar
+
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>dev/null
 if [ $? -eq 0 ]; then
@@ -53,7 +55,7 @@ fi
 #Configure Agent with CLI
 TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp | sed -e 's|>| |g' -e 's|<| |g' | xargs -n1 | grep argument -A1 | grep -v argument  | head -1)
 
-curl -f -s -O ${URL}/jnlpJars/agent.jar
+
 
 java -jar agent.jar -jnlpUrl http://172.31.40.19:8080/computer/agent1a/jenkins-agent.jnlp -secret 90731c613108a6ff64fc1fdf22074395b3be3a714058abc6b43b83c03d0aebfc -workDir "/home/centos"
 
