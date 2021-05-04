@@ -1,4 +1,20 @@
 @Library('roboshop') _
 
-log.info 'Starting'
-log.warning 'Nothing to do!'
+//log.info 'Starting'
+//log.warning 'Nothing to do!'
+
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('One') {
+            steps {
+                script {
+                    log.info 'Starting'
+                }
+            }
+        }
+    }
+}
