@@ -1,6 +1,6 @@
-//@Library('roboshop') _
+@Library('roboshop') _
 
-//log()
+log()
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
@@ -26,16 +26,3 @@
 //        }
 //    }
 //}
-
-def call() {
-    pipeline {
-        agent any
-        stages {
-            stage('Info') {
-                steps {
-                    echo "Message = ${MESSAGE}, URL = ${URL_TEST}"
-                }
-            }
-        }
-    }
-}
