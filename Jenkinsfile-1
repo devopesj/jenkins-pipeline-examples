@@ -1,6 +1,6 @@
 @Library('roboshop') _
 
-log()
+log(URL_TEST="google.com")
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
