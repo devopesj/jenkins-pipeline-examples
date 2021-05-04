@@ -3,23 +3,36 @@
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
-pipeline {
+//pipeline {
+//
+//    agent any
+//
+//    environment {
+//        URL_TEST = "google.com"
+//    }
+//
+//    parameters {
+//        string(name: 'MESSAGE', defaultValue: ' ', description: 'Message to Print')
+//    }
+//    stages {
+//
+//        stage('One') {
+//            steps {
+//                script {
+//                    log.info "Message = ${params.MESSAGE}, URL = ${URL_TEST}"
+//                }
+//            }
+//        }
+//    }
+//}
 
-    agent any
-
-    environment {
-        URL_TEST = "google.com"
-    }
-
-    parameters {
-        string(name: 'MESSAGE', defaultValue: ' ', description: 'Message to Print')
-    }
-    stages {
-
-        stage('One') {
-            steps {
-                script {
-                    log.info "Message = ${params.MESSAGE}, URL = ${URL_TEST}"
+def call(int buildNumber) {
+    pipeline {
+        agent any
+        stages {
+            stage('Info') {
+                steps {
+                    echo "Message = ${MESSAGE}, URL = ${URL_TEST}"
                 }
             }
         }
