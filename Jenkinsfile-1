@@ -1,6 +1,6 @@
-@Library('roboshop') _
+//@Library('roboshop') _
 
-log()
+//log()
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
