@@ -1,5 +1,6 @@
 @Library('roboshop') _
 
+log()
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
@@ -26,7 +27,7 @@
 //    }
 //}
 
-def call(int buildNumber) {
+def call() {
     pipeline {
         agent any
         stages {
