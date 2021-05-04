@@ -19,7 +19,7 @@ pipeline {
         stage('One') {
             steps {
                 script {
-                    log.info "Message = ${MESSAGE}, URL = ${URL_TEST}"
+                    log.info "Message = ${params.MESSAGE}, URL = ${URL_TEST}"
                 }
             }
         }
